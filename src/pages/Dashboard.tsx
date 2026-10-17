@@ -88,7 +88,7 @@ export const Dashboard: React.FC = () => {
   if (!user) return null
 
   return (
-    <div className="min-h-screen bg-slate-50/70 flex">
+    <div className="min-h-screen bg-slate-50/70 dark:bg-slate-950 flex transition-colors">
       {/* Menu Lateral Fixo */}
       <Sidebar
         isOpen={mobileMenuOpen}
@@ -99,20 +99,20 @@ export const Dashboard: React.FC = () => {
       {/* Área Principal de Conteúdo */}
       <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         {/* Top Header Mobile / Tablet */}
-        <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+        <header className="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-8 py-3.5 flex items-center justify-between transition-colors">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 -ml-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 lg:hidden transition-colors"
+              className="p-2 -ml-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 lg:hidden transition-colors"
               aria-label="Abrir menu lateral"
             >
               <Menu className="w-5 h-5" />
             </button>
             <div>
-              <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">
+              <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Painel Principal
               </h1>
-              <p className="text-xs text-slate-500 hidden sm:block">
+              <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
                 Visão consolidada do seu consultório em tempo real
               </p>
             </div>
@@ -124,7 +124,7 @@ export const Dashboard: React.FC = () => {
               size="sm"
               onClick={() => loadMetrics(true)}
               disabled={refreshing || loading}
-              className="text-xs font-semibold text-slate-700 border-slate-200 hover:bg-slate-100"
+              className="text-xs font-semibold text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${refreshing ? 'animate-spin text-emerald-600' : ''}`} />
               <span className="hidden sm:inline">Atualizar</span>
@@ -138,6 +138,7 @@ export const Dashboard: React.FC = () => {
             </Link>
           </div>
         </header>
+
 
         {/* Conteúdo Principal */}
         <main className="flex-1 p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-8">
@@ -178,129 +179,130 @@ export const Dashboard: React.FC = () => {
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                   Métricas em Tempo Real
                 </h3>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Dados isolados exclusivamente para o seu perfil profissional
                 </p>
               </div>
 
               {data.semana_inicio && data.semana_fim && (
-                <div className="text-xs font-medium text-slate-500 bg-white px-3 py-1.5 rounded-xl border border-slate-200/80 hidden sm:block">
-                  Semana: <span className="font-bold text-slate-700">{data.semana_inicio}</span> a <span className="font-bold text-slate-700">{data.semana_fim}</span>
+                <div className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-200/80 dark:border-slate-800 hidden sm:block">
+                  Semana: <span className="font-bold text-slate-700 dark:text-slate-200">{data.semana_inicio}</span> a <span className="font-bold text-slate-700 dark:text-slate-200">{data.semana_fim}</span>
                 </div>
               )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* CARD 1 — Total de pacientes ativos */}
-              <Card className="border-slate-200/90 hover:border-emerald-200 hover:shadow-md transition-all duration-200 bg-white rounded-2xl">
+              <Card className="border-slate-200/90 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-700 hover:shadow-md transition-all duration-200 bg-white dark:bg-slate-900 rounded-2xl">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                         Card 1
                       </span>
-                      <h4 className="text-sm font-semibold text-slate-600 mt-1">
+                      <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-300 mt-1">
                         Total de pacientes ativos
                       </h4>
                       <div className="mt-3 flex items-baseline gap-2">
                         {loading ? (
-                          <div className="h-10 w-16 bg-slate-100 rounded-lg animate-pulse" />
+                          <div className="h-10 w-16 bg-slate-100 dark:bg-slate-800 rounded-lg animate-pulse" />
                         ) : (
-                          <span className="text-4xl font-extrabold text-slate-900 tracking-tight">
+                          <span className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                             {data.total_pacientes}
                           </span>
                         )}
-                        <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/80">
+                        <span className="text-xs font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-200/80 dark:border-emerald-800">
                           sob seus cuidados
                         </span>
                       </div>
-                      <p className="text-xs text-slate-400 mt-2">
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">
                         Cadastrados pela nutricionista logada no sistema
                       </p>
                     </div>
 
-                    <div className="w-13 h-13 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 shadow-xs">
+                    <div className="w-13 h-13 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 shadow-xs">
                       <Users className="w-6 h-6 stroke-[2.2]" />
                     </div>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
                     <Link
                       to="/pacientes"
-                      className="font-semibold text-emerald-600 hover:text-emerald-700 flex items-center gap-1 group"
+                      className="font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 flex items-center gap-1 group"
                     >
                       <span>Gerenciar pacientes</span>
                       <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
-                    <span className="text-slate-400 text-[11px]">Sincronizado</span>
+                    <span className="text-slate-400 dark:text-slate-500 text-[11px]">Sincronizado</span>
                   </div>
                 </CardContent>
               </Card>
 
               {/* CARD 2 — Consultas da semana */}
-              <Card className="border-slate-200/90 hover:border-teal-200 hover:shadow-md transition-all duration-200 bg-white rounded-2xl">
+              <Card className="border-slate-200/90 dark:border-slate-800 hover:border-teal-200 dark:hover:border-teal-700 hover:shadow-md transition-all duration-200 bg-white dark:bg-slate-900 rounded-2xl">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                         Card 2
                       </span>
-                      <h4 className="text-sm font-semibold text-slate-600 mt-1">
+                      <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-300 mt-1">
                         Consultas da semana
                       </h4>
                       <div className="mt-3 flex items-baseline gap-2">
                         {loading ? (
-                          <div className="h-10 w-16 bg-slate-100 rounded-lg animate-pulse" />
+                          <div className="h-10 w-16 bg-slate-100 dark:bg-slate-800 rounded-lg animate-pulse" />
                         ) : (
-                          <span className="text-4xl font-extrabold text-slate-900 tracking-tight">
+                          <span className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                             {data.consultas_semana}
                           </span>
                         )}
-                        <span className="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-200/80 flex items-center gap-1">
+                        <span className="text-xs font-medium text-teal-700 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/40 px-2 py-0.5 rounded-full border border-teal-200/80 dark:border-teal-800 flex items-center gap-1">
                           <TrendingUp className="w-3 h-3" /> esta semana
                         </span>
                       </div>
-                      <p className="text-xs text-slate-400 mt-2">
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">
                         Consultas registradas na semana atual
                       </p>
                     </div>
 
-                    <div className="w-13 h-13 rounded-2xl bg-teal-50 border border-teal-100 text-teal-600 flex items-center justify-center shrink-0 shadow-xs">
+                    <div className="w-13 h-13 rounded-2xl bg-teal-50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-800 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0 shadow-xs">
                       <Calendar className="w-6 h-6 stroke-[2.2]" />
                     </div>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span className="text-slate-500 font-medium">
+                  <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                    <span className="text-slate-500 dark:text-slate-400 font-medium">
                       Período: {data.semana_inicio || 'Início'} a {data.semana_fim || 'Hoje'}
                     </span>
-                    <span className="text-slate-400 text-[11px]">Histórico semanal</span>
+                    <span className="text-slate-400 dark:text-slate-500 text-[11px]">Histórico semanal</span>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
+
             {/* CARD 3 — Pacientes sem retorno */}
-            <Card className="border-slate-200/90 hover:shadow-md transition-all duration-200 bg-white rounded-2xl overflow-hidden mt-6">
-              <CardHeader className="bg-slate-50/70 border-b border-slate-100 p-5 sm:p-6">
+            <Card className="border-slate-200/90 dark:border-slate-800 hover:shadow-md transition-all duration-200 bg-white dark:bg-slate-900 rounded-2xl overflow-hidden mt-6">
+              <CardHeader className="bg-slate-50/70 dark:bg-slate-950/40 border-b border-slate-100 dark:border-slate-800 p-5 sm:p-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200/80 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-800 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
                       <ClockAlert className="w-5 h-5 stroke-[2.2]" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                        <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                           Card 3
                         </span>
-                        <CardTitle className="text-base sm:text-lg font-bold text-slate-900">
+                        <CardTitle className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                           Pacientes sem retorno
                         </CardTitle>
                       </div>
-                      <CardDescription className="text-xs text-slate-500 mt-0.5">
+                      <CardDescription className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                         Pacientes cuja última consulta foi há mais de 30 dias e que não possuem próximo retorno agendado
                       </CardDescription>
                     </div>
@@ -311,8 +313,8 @@ export const Dashboard: React.FC = () => {
                       <span
                         className={`text-xs px-2.5 py-1 rounded-full font-bold border ${
                           data.pacientes_sem_retorno.length > 0
-                            ? 'bg-amber-50 text-amber-800 border-amber-200'
-                            : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                            ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800'
+                            : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
                         }`}
                       >
                         {data.pacientes_sem_retorno.length}{' '}
@@ -327,41 +329,42 @@ export const Dashboard: React.FC = () => {
                 {loading ? (
                   <div className="p-8 text-center space-y-3">
                     <div className="w-8 h-8 border-3 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto" />
-                    <p className="text-xs text-slate-500">Buscando histórico de consultas...</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Buscando histórico de consultas...</p>
                   </div>
                 ) : data.pacientes_sem_retorno.length === 0 ? (
                   /* Mensagem obrigatória do Prompt 3 quando não houver pacientes sem retorno */
                   <div className="p-8 sm:p-12 text-center">
-                    <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200/80 flex items-center justify-center mx-auto mb-3 shadow-xs">
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800 flex items-center justify-center mx-auto mb-3 shadow-xs">
                       <CheckCircle2 className="w-7 h-7 stroke-[2.2]" />
                     </div>
-                    <h4 className="text-base font-bold text-slate-800">
+                    <h4 className="text-base font-bold text-slate-800 dark:text-white">
                       Nenhum paciente sem retorno no momento
                     </h4>
-                    <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mt-1 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mt-1 leading-relaxed">
                       Excelente trabalho! Todos os seus pacientes cadastrados estão com consultas recentes ou com próximo retorno já agendado.
                     </p>
                   </div>
                 ) : (
                   /* Lista de pacientes sem retorno (cada nome é clicável e redireciona para o perfil) */
-                  <div className="divide-y divide-slate-100">
+                  <div className="divide-y divide-slate-100 dark:divide-slate-800">
                     {data.pacientes_sem_retorno.map((paciente) => (
                       <Link
                         key={paciente.id}
                         to={`/pacientes/${paciente.id}`}
-                        className="group flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-5 hover:bg-slate-50/80 transition-colors gap-3"
+                        className="group flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-5 hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors gap-3"
                         title={`Abrir perfil de ${paciente.nome}`}
                       >
                         <div className="flex items-center gap-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-slate-100 to-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm shrink-0 group-hover:from-emerald-100 group-hover:to-teal-100 group-hover:text-emerald-800 transition-colors">
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-sm shrink-0 group-hover:from-emerald-100 group-hover:to-teal-100 group-hover:text-emerald-800 transition-colors">
                             {paciente.nome.charAt(0).toUpperCase()}
                           </div>
                           <div>
-                            <span className="font-bold text-sm text-slate-900 group-hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+                            <span className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors flex items-center gap-1.5">
                               {paciente.nome}
-                              <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-emerald-600" />
+                              <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-emerald-600 dark:text-emerald-400" />
                             </span>
-                            <div className="flex items-center gap-3 mt-1 text-xs text-slate-400">
+                            <div className="flex items-center gap-3 mt-1 text-xs text-slate-400 dark:text-slate-500">
+
                               {paciente.whatsapp && (
                                 <span className="flex items-center gap-1">
                                   <Phone className="w-3 h-3 text-slate-400" /> {paciente.whatsapp}

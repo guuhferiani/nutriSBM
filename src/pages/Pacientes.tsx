@@ -78,7 +78,7 @@ export const Pacientes: React.FC = () => {
   if (!user) return null
 
   return (
-    <div className="min-h-screen bg-slate-50/70 flex">
+    <div className="min-h-screen bg-slate-50/70 dark:bg-slate-950 flex transition-colors">
       {/* Menu Lateral Fixo */}
       <Sidebar
         isOpen={mobileMenuOpen}
@@ -87,20 +87,20 @@ export const Pacientes: React.FC = () => {
       />
 
       <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
-        <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+        <header className="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-8 py-3.5 flex items-center justify-between transition-colors">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 -ml-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 lg:hidden transition-colors"
+              className="p-2 -ml-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 lg:hidden transition-colors"
               aria-label="Abrir menu"
             >
               <Menu className="w-5 h-5" />
             </button>
             <div>
-              <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">
+              <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Meus Pacientes
               </h1>
-              <p className="text-xs text-slate-500 hidden sm:block">
+              <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
                 Lista de pacientes cadastrados por {user.name}
               </p>
             </div>
@@ -112,7 +112,7 @@ export const Pacientes: React.FC = () => {
               size="sm"
               onClick={loadData}
               disabled={loading}
-              className="text-xs text-slate-600 hidden sm:flex"
+              className="text-xs text-slate-600 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 hidden sm:flex"
             >
               <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${loading ? 'animate-spin text-emerald-600' : ''}`} />
               <span>Atualizar</span>
@@ -129,7 +129,7 @@ export const Pacientes: React.FC = () => {
 
         <main className="flex-1 p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-6">
           {/* Barra de Busca no Topo */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-2xs">
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <Input
@@ -137,12 +137,12 @@ export const Pacientes: React.FC = () => {
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Buscar paciente por nome..."
-                className="pl-10 text-sm h-10 border-slate-200"
+                className="pl-10 text-sm h-10 border-slate-200 dark:border-slate-800"
               />
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="text-xs font-semibold text-slate-500 px-3 py-1.5 bg-slate-50 rounded-lg border border-slate-200 self-center">
+              <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 self-center">
                 Total: {filteredPacientes.length} {filteredPacientes.length === 1 ? 'paciente' : 'pacientes'}
               </div>
 
@@ -159,17 +159,17 @@ export const Pacientes: React.FC = () => {
           {loading ? (
             <div className="p-12 text-center">
               <div className="w-8 h-8 border-3 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-xs font-semibold text-slate-600">Carregando pacientes...</p>
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400">Carregando pacientes...</p>
             </div>
           ) : filteredPacientes.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-12 text-center">
-              <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200 text-slate-400 flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-12 text-center">
+              <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 flex items-center justify-center mx-auto mb-4">
                 <Users className="w-7 h-7" />
               </div>
-              <h3 className="text-base font-bold text-slate-800">
+              <h3 className="text-base font-bold text-slate-800 dark:text-white">
                 {searchTerm ? 'Nenhum paciente encontrado' : 'Nenhum paciente cadastrado ainda'}
               </h3>
-              <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1 mb-5">
+              <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto mt-1 mb-5">
                 {searchTerm
                   ? 'Tente ajustar sua busca para localizar o paciente desejado.'
                   : 'Comece cadastrando seu primeiro paciente para gerenciar consultas e planos alimentares.'}
@@ -199,42 +199,42 @@ export const Pacientes: React.FC = () => {
                   <Link
                     key={paciente.id}
                     to={`/pacientes/${paciente.id}`}
-                    className="group bg-white rounded-2xl border border-slate-200/90 hover:border-emerald-300 hover:shadow-md transition-all p-5 flex flex-col justify-between"
+                    className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-md transition-all p-5 flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-3 mb-3">
-                        <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-100 to-teal-50 text-emerald-800 font-bold flex items-center justify-center text-sm border border-emerald-200/60 group-hover:scale-105 transition-transform">
+                        <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-100 to-teal-50 dark:from-emerald-950 dark:to-teal-900 text-emerald-800 dark:text-emerald-300 font-bold flex items-center justify-center text-sm border border-emerald-200/60 dark:border-emerald-800 group-hover:scale-105 transition-transform">
                           {paciente.nome.charAt(0).toUpperCase()}
                         </div>
-                        <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
+                        <span className="text-[11px] font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-200/80 dark:border-emerald-800">
                           Ativo
                         </span>
                       </div>
 
                       {/* Nome do Paciente */}
-                      <h4 className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors text-base">
+                      <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors text-base">
                         {paciente.nome}
                       </h4>
 
                       {/* Objetivo do Paciente */}
-                      <div className="mt-2 flex items-start gap-1.5 text-xs text-slate-600">
-                        <Target className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                      <div className="mt-2 flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-300">
+                        <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                         <span className="font-medium line-clamp-2">
-                          <strong className="text-slate-700">Objetivo:</strong> {objetivoDisplay}
+                          <strong className="text-slate-700 dark:text-slate-200">Objetivo:</strong> {objetivoDisplay}
                         </span>
                       </div>
 
                       {/* Data da Última Consulta */}
-                      <div className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
+                      <div className="mt-2 flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
                         <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                         <span>
-                          <strong className="text-slate-600 font-medium">Última consulta:</strong> {ultimaConsultaFmt}
+                          <strong className="text-slate-600 dark:text-slate-300 font-medium">Última consulta:</strong> {ultimaConsultaFmt}
                         </span>
                       </div>
 
                       {/* Contato (WhatsApp / Email) */}
                       {(paciente.whatsapp || paciente.email) && (
-                        <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+                        <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
                           {paciente.whatsapp && (
                             <div className="flex items-center gap-2">
                               <Phone className="w-3.5 h-3.5 text-slate-400" />
@@ -251,7 +251,7 @@ export const Pacientes: React.FC = () => {
                       )}
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-600 group-hover:text-emerald-700">
+                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
                       <span>Ver perfil do paciente</span>
                       <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -264,5 +264,6 @@ export const Pacientes: React.FC = () => {
       </div>
     </div>
   )
+
 }
 

@@ -7,6 +7,7 @@ import { Input } from '../components/ui/Input'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card'
 import { Alert } from '../components/ui/Alert'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { ThemeToggle } from '../components/ThemeToggle'
 
 export const Login: React.FC = () => {
   const navigate = useNavigate()
@@ -48,11 +49,16 @@ export const Login: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50/60 via-slate-50 to-emerald-50/30 flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50/60 via-slate-50 to-emerald-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-emerald-950/20 flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 relative transition-colors">
+      {/* Botão flutuante de alternar tema no topo direito */}
+      <div className="absolute top-4 right-4 z-20">
+        <ThemeToggle />
+      </div>
+
       {/* Decorações de fundo */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -right-32 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-emerald-200/30 dark:bg-emerald-800/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 -right-32 w-96 h-96 bg-emerald-300/20 dark:bg-emerald-600/10 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-[440px] z-10">
@@ -61,7 +67,8 @@ export const Login: React.FC = () => {
           <Logo />
         </div>
 
-        <Card className="border-slate-200/80 bg-white/95 backdrop-blur-md shadow-2xl shadow-emerald-950/5">
+        <Card className="border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-2xl shadow-emerald-950/5">
+
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl text-slate-800">Bem-vindo(a) de volta</CardTitle>
             <CardDescription>

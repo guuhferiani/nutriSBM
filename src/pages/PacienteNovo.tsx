@@ -329,14 +329,14 @@ export const PacienteNovo: React.FC = () => {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
         <div className="w-10 h-10 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-50/70 flex">
+    <div className="min-h-screen bg-slate-50/70 dark:bg-slate-950 flex">
       {/* Menu Lateral Fixo */}
       <Sidebar
         isOpen={mobileMenuOpen}
@@ -345,27 +345,27 @@ export const PacienteNovo: React.FC = () => {
 
       <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         {/* Cabeçalho */}
-        <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+        <header className="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-8 py-3.5 flex items-center justify-between transition-colors">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 -ml-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 lg:hidden transition-colors"
+              className="p-2 -ml-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden transition-colors"
               aria-label="Abrir menu"
             >
               <Menu className="w-5 h-5" />
             </button>
             <Link
               to="/pacientes"
-              className="p-1.5 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors mr-1"
+              className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors mr-1"
               title="Voltar para Pacientes"
             >
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+              <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
                 Novo Paciente
               </h1>
-              <p className="text-xs text-slate-500 hidden sm:block">
+              <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
                 Preencha os dados cadastrais, clínicos e hábitos alimentares
               </p>
             </div>
@@ -405,8 +405,8 @@ export const PacienteNovo: React.FC = () => {
             <Alert variant="success" className="animate-in fade-in duration-300">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
               <div>
-                <p className="font-bold text-sm text-emerald-900">Sucesso!</p>
-                <p className="text-xs text-emerald-700 mt-0.5">{successMessage} Redirecionando...</p>
+                <p className="font-bold text-sm text-emerald-900 dark:text-emerald-200">Sucesso!</p>
+                <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-0.5">{successMessage} Redirecionando...</p>
               </div>
             </Alert>
           )}
@@ -415,21 +415,21 @@ export const PacienteNovo: React.FC = () => {
             <Alert variant="destructive" className="animate-in fade-in duration-300">
               <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
               <div>
-                <p className="font-bold text-sm text-rose-900">Atenção</p>
-                <p className="text-xs text-rose-700 mt-0.5">{errorMessage}</p>
+                <p className="font-bold text-sm text-rose-900 dark:text-rose-200">Atenção</p>
+                <p className="text-xs text-rose-700 dark:text-rose-300 mt-0.5">{errorMessage}</p>
               </div>
             </Alert>
           )}
 
           {/* Abas do Formulário */}
-          <div className="bg-white rounded-2xl p-2 border border-slate-200/90 shadow-2xs flex items-center gap-1 sm:gap-2">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl p-2 border border-slate-200/90 dark:border-slate-800 shadow-2xs flex items-center gap-1 sm:gap-2 transition-colors">
             <button
               type="button"
               onClick={() => setActiveTab('pessoal')}
               className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeTab === 'pessoal'
                   ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/25'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <User className="w-4 h-4 shrink-0" />
@@ -442,7 +442,7 @@ export const PacienteNovo: React.FC = () => {
               className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeTab === 'clinico'
                   ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/25'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Activity className="w-4 h-4 shrink-0" />
@@ -455,7 +455,7 @@ export const PacienteNovo: React.FC = () => {
               className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                 activeTab === 'habitos'
                   ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/25'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Coffee className="w-4 h-4 shrink-0" />
@@ -468,14 +468,14 @@ export const PacienteNovo: React.FC = () => {
             {/* ABA 1: PESSOAL */}
             {/* ======================================================== */}
             {activeTab === 'pessoal' && (
-              <Card className="border-slate-200/90 bg-white rounded-3xl shadow-2xs">
+              <Card className="border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-3xl shadow-2xs">
                 <CardContent className="p-6 sm:p-8 space-y-6">
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                       <User className="w-5 h-5 text-emerald-600" />
                       Dados Pessoais
                     </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                       Informações básicas de identificação e contato do paciente.
                     </p>
                   </div>
@@ -483,7 +483,7 @@ export const PacienteNovo: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Nome Completo */}
                     <div className="sm:col-span-2">
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Nome Completo <span className="text-rose-500 font-extrabold">*</span>
                       </label>
                       <Input
@@ -499,11 +499,11 @@ export const PacienteNovo: React.FC = () => {
                     {/* Data de Nascimento & Idade Calculada */}
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                           Data de Nascimento
                         </label>
                         {idadeCalculada !== null && (
-                          <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
+                          <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md border border-emerald-200/60 dark:border-emerald-800/60">
                             {idadeCalculada} {idadeCalculada === 1 ? 'ano' : 'anos'}
                           </span>
                         )}
@@ -520,7 +520,7 @@ export const PacienteNovo: React.FC = () => {
 
                     {/* Sexo */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Sexo
                       </label>
                       <div className="grid grid-cols-3 gap-2">
@@ -531,8 +531,8 @@ export const PacienteNovo: React.FC = () => {
                             onClick={() => setSexo(opt)}
                             className={`py-2.5 px-3 rounded-xl border text-xs font-semibold transition-all ${
                               sexo === opt
-                                ? 'bg-emerald-50 border-emerald-500 text-emerald-800 ring-2 ring-emerald-500/20'
-                                : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                                ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-800 dark:text-emerald-300 ring-2 ring-emerald-500/20'
+                                : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                             }`}
                           >
                             {opt}
@@ -543,7 +543,7 @@ export const PacienteNovo: React.FC = () => {
 
                     {/* WhatsApp */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         WhatsApp
                       </label>
                       <div className="relative">
@@ -560,7 +560,7 @@ export const PacienteNovo: React.FC = () => {
 
                     {/* Email */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         E-mail
                       </label>
                       <div className="relative">
@@ -593,22 +593,22 @@ export const PacienteNovo: React.FC = () => {
             {/* ABA 2: CLÍNICO */}
             {/* ======================================================== */}
             {activeTab === 'clinico' && (
-              <Card className="border-slate-200/90 bg-white rounded-3xl shadow-2xs">
+              <Card className="border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-3xl shadow-2xs">
                 <CardContent className="p-6 sm:p-8 space-y-6">
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                       <Activity className="w-5 h-5 text-emerald-600" />
                       Avaliação Clínica e Antropométrica
                     </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                       Medidas corporais, IMC automático, objetivos e histórico de saúde.
                     </p>
                   </div>
 
                   {/* Medidas e IMC */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 p-5 bg-slate-50/70 rounded-2xl border border-slate-200/80">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 p-5 bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200/80 dark:border-slate-800">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Peso Atual
                       </label>
                       <div className="relative">
@@ -618,7 +618,7 @@ export const PacienteNovo: React.FC = () => {
                           value={peso}
                           onChange={e => setPeso(e.target.value)}
                           placeholder="Ex: 68.5"
-                          className="pr-12 h-11 text-sm border-slate-200 bg-white focus:border-emerald-500"
+                          className="pr-12 h-11 text-sm border-slate-200 focus:border-emerald-500"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">
                           kg
@@ -627,7 +627,7 @@ export const PacienteNovo: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Altura
                       </label>
                       <div className="relative">
@@ -637,7 +637,7 @@ export const PacienteNovo: React.FC = () => {
                           value={altura}
                           onChange={e => setAltura(e.target.value)}
                           placeholder="Ex: 168"
-                          className="pr-12 h-11 text-sm border-slate-200 bg-white focus:border-emerald-500"
+                          className="pr-12 h-11 text-sm border-slate-200 focus:border-emerald-500"
                         />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">
                           cm
@@ -646,12 +646,12 @@ export const PacienteNovo: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         IMC (Calculado)
                       </label>
                       <div
                         className={`h-11 px-4 rounded-xl border flex items-center justify-between text-sm font-bold ${
-                          imcInfo ? imcInfo.cor : 'bg-slate-100/70 border-slate-200 text-slate-400'
+                          imcInfo ? imcInfo.cor : 'bg-slate-100/70 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-400'
                         }`}
                       >
                         <span>{imcInfo ? `${imcInfo.valor} kg/m²` : '—'}</span>
@@ -664,7 +664,7 @@ export const PacienteNovo: React.FC = () => {
 
                   {/* Nível de Atividade Física */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                       Nível de Atividade Física
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -675,8 +675,8 @@ export const PacienteNovo: React.FC = () => {
                           onClick={() => setNivelAtividade(nivel)}
                           className={`p-2.5 rounded-xl border text-xs font-medium text-center transition-all ${
                             nivelAtividade === nivel
-                              ? 'bg-emerald-50 border-emerald-500 text-emerald-800 font-bold ring-2 ring-emerald-500/20'
-                              : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                              ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-800 dark:text-emerald-300 font-bold ring-2 ring-emerald-500/20'
+                              : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                           }`}
                         >
                           {nivel}
@@ -687,7 +687,7 @@ export const PacienteNovo: React.FC = () => {
 
                   {/* Objetivos */}
                   <div className="space-y-3">
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                       Objetivos (Múltipla Escolha)
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -701,7 +701,7 @@ export const PacienteNovo: React.FC = () => {
                             className={`px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all ${
                               isSelected
                                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
-                                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
                             }`}
                           >
                             {obj}
@@ -721,7 +721,7 @@ export const PacienteNovo: React.FC = () => {
 
                   {/* Patologias ou condições de saúde */}
                   <div className="space-y-2.5">
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                       Patologias ou Condições de Saúde
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -730,8 +730,8 @@ export const PacienteNovo: React.FC = () => {
                         onClick={() => toggleArrayItem(patologias, setPatologias, 'Nenhum')}
                         className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                           patologias.includes('Nenhum')
-                            ? 'bg-slate-800 text-white border-slate-800'
-                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                            ? 'bg-slate-800 dark:bg-slate-700 text-white border-slate-800 dark:border-slate-700'
+                            : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
                         }`}
                       >
                         Nenhum
@@ -746,7 +746,7 @@ export const PacienteNovo: React.FC = () => {
                             className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                               isSelected
                                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
-                                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
                             }`}
                           >
                             {item}
@@ -758,7 +758,7 @@ export const PacienteNovo: React.FC = () => {
                         .map(item => (
                           <span
                             key={item}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
                           >
                             {item}
                             <button
@@ -800,7 +800,7 @@ export const PacienteNovo: React.FC = () => {
 
                   {/* Restrições Alimentares */}
                   <div className="space-y-2.5">
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                       Restrições Alimentares
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -809,8 +809,8 @@ export const PacienteNovo: React.FC = () => {
                         onClick={() => toggleArrayItem(restricoes, setRestricoes, 'Nenhum')}
                         className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                           restricoes.includes('Nenhum')
-                            ? 'bg-slate-800 text-white border-slate-800'
-                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                            ? 'bg-slate-800 dark:bg-slate-700 text-white border-slate-800 dark:border-slate-700'
+                            : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
                         }`}
                       >
                         Nenhum
@@ -825,7 +825,7 @@ export const PacienteNovo: React.FC = () => {
                             className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                               isSelected
                                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
-                                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
                             }`}
                           >
                             {item}
@@ -837,7 +837,7 @@ export const PacienteNovo: React.FC = () => {
                         .map(item => (
                           <span
                             key={item}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
                           >
                             {item}
                             <button
@@ -879,7 +879,7 @@ export const PacienteNovo: React.FC = () => {
 
                   {/* Alergias Alimentares */}
                   <div className="space-y-2.5">
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                       Alergias Alimentares
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -888,8 +888,8 @@ export const PacienteNovo: React.FC = () => {
                         onClick={() => toggleArrayItem(alergias, setAlergias, 'Nenhum')}
                         className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                           alergias.includes('Nenhum')
-                            ? 'bg-slate-800 text-white border-slate-800'
-                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                            ? 'bg-slate-800 dark:bg-slate-700 text-white border-slate-800 dark:border-slate-700'
+                            : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
                         }`}
                       >
                         Nenhum
@@ -904,7 +904,7 @@ export const PacienteNovo: React.FC = () => {
                             className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                               isSelected
                                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
-                                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800'
                             }`}
                           >
                             {item}
@@ -916,7 +916,7 @@ export const PacienteNovo: React.FC = () => {
                         .map(item => (
                           <span
                             key={item}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
                           >
                             {item}
                             <button
@@ -959,7 +959,7 @@ export const PacienteNovo: React.FC = () => {
                   {/* Medicamentos e Suplementos */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Medicamentos Contínuos (Texto Livre)
                       </label>
                       <textarea
@@ -967,12 +967,12 @@ export const PacienteNovo: React.FC = () => {
                         value={medicamentos}
                         onChange={e => setMedicamentos(e.target.value)}
                         placeholder="Ex: Puran T4 50mcg em jejum, Losartana 50mg..."
-                        className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:border-emerald-500 focus:outline-hidden"
+                        className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-3 text-xs focus:border-emerald-500 focus:outline-hidden"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Suplementos em Uso (Texto Livre)
                       </label>
                       <textarea
@@ -980,7 +980,7 @@ export const PacienteNovo: React.FC = () => {
                         value={suplementos}
                         onChange={e => setSuplementos(e.target.value)}
                         placeholder="Ex: Creatina 5g/dia, Whey protein pós-treino, Ômega 3..."
-                        className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:border-emerald-500 focus:outline-hidden"
+                        className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-3 text-xs focus:border-emerald-500 focus:outline-hidden"
                       />
                     </div>
                   </div>
@@ -1010,14 +1010,14 @@ export const PacienteNovo: React.FC = () => {
             {/* ABA 3: HÁBITOS */}
             {/* ======================================================== */}
             {activeTab === 'habitos' && (
-              <Card className="border-slate-200/90 bg-white rounded-3xl shadow-2xs">
+              <Card className="border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-3xl shadow-2xs">
                 <CardContent className="p-6 sm:p-8 space-y-6">
                   <div>
-                    <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                       <Coffee className="w-5 h-5 text-emerald-600" />
                       Hábitos e Rotina Diária
                     </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                       Horários de sono, consumo de água, refeições e atividade física.
                     </p>
                   </div>
@@ -1025,7 +1025,7 @@ export const PacienteNovo: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Refeições por dia */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Quantas refeições faz por dia
                       </label>
                       <Input
@@ -1041,7 +1041,7 @@ export const PacienteNovo: React.FC = () => {
 
                     {/* Quantidade de água por dia */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Quantidade de água por dia
                       </label>
                       <div className="relative">
@@ -1062,7 +1062,7 @@ export const PacienteNovo: React.FC = () => {
 
                     {/* Horário que acorda */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Horário que acorda
                       </label>
                       <div className="relative">
@@ -1076,14 +1076,14 @@ export const PacienteNovo: React.FC = () => {
                           className="pl-10 h-11 text-sm border-slate-200 focus:border-emerald-500"
                         />
                       </div>
-                      <p className="text-[11px] text-slate-400 mt-1">
+                      <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
                         Digite ex: 6 (converte para 06:00) ou 630 (06:30)
                       </p>
                     </div>
 
                     {/* Horário que dorme */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Horário que dorme
                       </label>
                       <div className="relative">
@@ -1097,16 +1097,16 @@ export const PacienteNovo: React.FC = () => {
                           className="pl-10 h-11 text-sm border-slate-200 focus:border-emerald-500"
                         />
                       </div>
-                      <p className="text-[11px] text-slate-400 mt-1">
+                      <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
                         Digite ex: 23 (converte para 23:00) ou 2230 (22:30)
                       </p>
                     </div>
                   </div>
 
                   {/* Pratica Atividade Física */}
-                  <div className="p-5 bg-slate-50/70 rounded-2xl border border-slate-200/80 space-y-4">
+                  <div className="p-5 bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                         Pratica Atividade Física?
                       </label>
                       <div className="flex gap-3">
@@ -1116,7 +1116,7 @@ export const PacienteNovo: React.FC = () => {
                           className={`px-5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
                             praticaAtividadeFisica === true
                               ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
-                              : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                           }`}
                         >
                           Sim
@@ -1129,8 +1129,8 @@ export const PacienteNovo: React.FC = () => {
                           }}
                           className={`px-5 py-2.5 rounded-xl border text-xs font-bold transition-all ${
                             praticaAtividadeFisica === false
-                              ? 'bg-slate-800 text-white border-slate-800'
-                              : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                              ? 'bg-slate-800 dark:bg-slate-700 text-white border-slate-800 dark:border-slate-700'
+                              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                           }`}
                         >
                           Não
@@ -1140,7 +1140,7 @@ export const PacienteNovo: React.FC = () => {
 
                     {praticaAtividadeFisica === true && (
                       <div className="animate-in fade-in duration-200">
-                        <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                           Qual atividade e frequência semanal?
                         </label>
                         <textarea
@@ -1148,7 +1148,7 @@ export const PacienteNovo: React.FC = () => {
                           value={atividadeDescricao}
                           onChange={e => setAtividadeDescricao(e.target.value)}
                           placeholder="Ex: Musculação 4x na semana + Corrida aos sábados (40 min)"
-                          className="w-full rounded-xl border border-slate-200 p-3 text-xs bg-white focus:border-emerald-500 focus:outline-hidden"
+                          className="w-full rounded-xl border border-slate-200 dark:border-slate-800 p-3 text-xs bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:border-emerald-500 focus:outline-hidden"
                         />
                       </div>
                     )}
@@ -1156,7 +1156,7 @@ export const PacienteNovo: React.FC = () => {
 
                   {/* Observações Gerais */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       Observações Gerais (Texto Livre)
                     </label>
                     <textarea
@@ -1164,7 +1164,7 @@ export const PacienteNovo: React.FC = () => {
                       value={observacoes}
                       onChange={e => setObservacoes(e.target.value)}
                       placeholder="Histórico prévio, preferências alimentares, aversões ou rotina de trabalho..."
-                      className="w-full rounded-xl border border-slate-200 p-3 text-xs focus:border-emerald-500 focus:outline-hidden"
+                      className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-3 text-xs focus:border-emerald-500 focus:outline-hidden"
                     />
                   </div>
 
