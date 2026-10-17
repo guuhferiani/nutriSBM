@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Users, LogOut, ShieldCheck, X } from 'lucide-react'
+import { LayoutDashboard, Users, LogOut, X } from 'lucide-react'
 import { Logo } from './Logo'
 import { useAuth } from '../context/AuthContext'
 
@@ -56,19 +56,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose, pacie
           </button>
         </div>
 
-        {/* Status de Conexão Neon */}
-        <div className="px-6 py-3 bg-emerald-50/50 border-b border-emerald-100/60 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="text-xs font-semibold text-emerald-800">Neon Postgres</span>
-          </div>
-          <span className="text-[10px] font-medium text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-full flex items-center gap-1">
-            <ShieldCheck className="w-3 h-3" /> RLS Ativo
-          </span>
-        </div>
 
         {/* Navegação Principal */}
         <div className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto">

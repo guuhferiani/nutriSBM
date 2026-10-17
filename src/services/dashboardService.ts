@@ -194,21 +194,78 @@ export async function fetchDashboardMetrics(nutricionistaId: string): Promise<Da
 }
 
 /**
- * Busca a lista de pacientes do nutricionista logado
+ * Busca a lista de pacientes do nutricionista logado juntamente com a data da última consulta
  */
 export async function fetchPacientes(nutricionistaId: string): Promise<Paciente[]> {
   const headers = await getAuthHeaders()
   try {
-    const res = await fetch(`${DATA_API_URL}/pacientes?nutricionista_id=eq.${nutricionistaId}&order=nome.asc`, {
-      headers,
-    })
-    if (res.ok) {
-      return await res.json()
+    const [pacientesRes, consultasRes] = await Promise.all([
+      fetch(`${DATA_API_URL}/pacientes?nutricionista_id=eq.${nutricionistaId}&order=nome.asc`, { headers }),
+      fetch(`${DATA_API_URL}/consultas?select=paciente_id,data_consulta&order=data_consulta.desc`, { headers }),
+    ])
+
+    if (pacientesRes.ok) {
+      const pacientesList: Paciente[] = await pacientesRes.json()
+      let consultasList: { paciente_id: string; data_consulta: string }[] = []
+
+      if (consultasRes.ok) {
+        consultasList = await consultasRes.json()
+      }
+
+      // Mapeia última consulta para cada paciente
+      const ultimaConsultaMap = new Map<string, string>()
+      for (const c of consultasList) {
+        if (!ultimaConsultaMap.has(c.paciente_id)) {
+          ultimaConsultaMap.set(c.paciente_id, c.data_consulta)
+        }
+      }
+
+      return pacientesList.map(p => ({
+        ...p,
+        ultima_consulta: ultimaConsultaMap.get(p.id) || null,
+      }))
     }
   } catch (err) {
     console.error('Erro ao buscar pacientes:', err)
   }
   return []
+}
+
+/**
+ * Cria um novo paciente vinculado ao nutricionista logado
+ */
+export async function createPaciente(pacienteData: Partial<Paciente> & { nutricionista_id: string; nome: string }): Promise<Paciente> {
+  const headers = await getAuthHeaders()
+  
+  // Limpa campos undefined para evitar erros de payload
+  const cleanedPayload: Record<string, any> = {}
+  for (const [key, val] of Object.entries(pacienteData)) {
+    if (val !== undefined) {
+      cleanedPayload[key] = val
+    }
+  }
+
+  const res = await fetch(`${DATA_API_URL}/pacientes`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation',
+    },
+    body: JSON.stringify(cleanedPayload),
+  })
+
+  if (!res.ok) {
+    const errorText = await res.text()
+    console.error('Erro na resposta ao criar paciente:', res.status, errorText)
+    throw new Error(errorText || 'Falha ao salvar paciente no banco de dados.')
+  }
+
+  const created = await res.json()
+  if (Array.isArray(created) && created.length > 0) {
+    return created[0]
+  }
+  return created
 }
 
 /**
@@ -242,3 +299,4 @@ export async function fetchPacienteDetails(pacienteId: string): Promise<{ pacien
     return { paciente: null, consultas: [] }
   }
 }
+

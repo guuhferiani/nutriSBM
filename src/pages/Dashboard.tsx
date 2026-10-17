@@ -60,7 +60,7 @@ export const Dashboard: React.FC = () => {
       setData(res)
     } catch (err: any) {
       console.error('Erro ao buscar métricas:', err)
-      setError('Não foi possível sincronizar os dados do Neon em tempo real.')
+      setError('Não foi possível sincronizar os dados em tempo real.')
     } finally {
       setLoading(false)
       setRefreshing(false)
@@ -79,7 +79,7 @@ export const Dashboard: React.FC = () => {
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-sm font-semibold text-slate-700">Carregando painel Nutri SBM...</p>
-          <p className="text-xs text-slate-400 mt-1">Conectando ao banco de dados Neon</p>
+          <p className="text-xs text-slate-400 mt-1">Conectando aos seus dados com segurança</p>
         </div>
       </div>
     )
@@ -113,7 +113,7 @@ export const Dashboard: React.FC = () => {
                 Painel Principal
               </h1>
               <p className="text-xs text-slate-500 hidden sm:block">
-                Visão consolidada em tempo real com Neon PostgreSQL
+                Visão consolidada do seu consultório em tempo real
               </p>
             </div>
           </div>
@@ -182,7 +182,7 @@ export const Dashboard: React.FC = () => {
                   Métricas em Tempo Real
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Dados isolados exclusivamente para o seu perfil no Neon
+                  Dados isolados exclusivamente para o seu perfil profissional
                 </p>
               </div>
 
@@ -235,7 +235,7 @@ export const Dashboard: React.FC = () => {
                       <span>Gerenciar pacientes</span>
                       <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
-                    <span className="text-slate-400 text-[11px]">Sincronizado no Neon</span>
+                    <span className="text-slate-400 text-[11px]">Sincronizado</span>
                   </div>
                 </CardContent>
               </Card>
@@ -327,7 +327,7 @@ export const Dashboard: React.FC = () => {
                 {loading ? (
                   <div className="p-8 text-center space-y-3">
                     <div className="w-8 h-8 border-3 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto" />
-                    <p className="text-xs text-slate-500">Buscando histórico de consultas no Neon...</p>
+                    <p className="text-xs text-slate-500">Buscando histórico de consultas...</p>
                   </div>
                 ) : data.pacientes_sem_retorno.length === 0 ? (
                   /* Mensagem obrigatória do Prompt 3 quando não houver pacientes sem retorno */

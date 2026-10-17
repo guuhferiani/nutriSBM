@@ -6,7 +6,7 @@ import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card'
 import { Alert } from '../components/ui/Alert'
-import { Mail, Lock, User, Eye, EyeOff, Check, X, ShieldCheck } from 'lucide-react'
+import { Mail, Lock, User, Eye, EyeOff, Check, X } from 'lucide-react'
 
 export const Register: React.FC = () => {
   const navigate = useNavigate()
@@ -231,12 +231,6 @@ export const Register: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-
-        {/* Rodapé de conformidade */}
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
-          <ShieldCheck className="w-4 h-4 text-emerald-500" />
-          <span>Seus dados ficam isolados com segurança Row Level Security (RLS)</span>
-        </div>
       </div>
     </div>
   )

@@ -138,7 +138,7 @@ export const PacientePerfil: React.FC = () => {
                 Perfil do Paciente
               </h1>
               <p className="text-xs text-slate-500 hidden sm:block">
-                Informações e histórico de consultas no Neon
+                Informações completas e histórico de consultas
               </p>
             </div>
           </div>
@@ -196,26 +196,151 @@ export const PacientePerfil: React.FC = () => {
 
             {/* Informações Antropométricas Iniciais */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-100 text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
                 <span className="text-slate-400 block font-medium">Peso Inicial</span>
                 <span className="text-sm font-bold text-slate-800 mt-0.5 block">
                   {paciente.peso_inicial ? `${paciente.peso_inicial} kg` : 'Não registrado'}
                 </span>
               </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
                 <span className="text-slate-400 block font-medium">Altura</span>
                 <span className="text-sm font-bold text-slate-800 mt-0.5 block">
-                  {paciente.altura ? `${paciente.altura} m` : 'Não registrada'}
+                  {paciente.altura
+                    ? paciente.altura > 3
+                      ? `${paciente.altura} cm`
+                      : `${paciente.altura} m`
+                    : 'Não registrada'}
                 </span>
               </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 col-span-2">
-                <span className="text-slate-400 block font-medium">Objetivo Principal</span>
-                <span className="text-sm font-semibold text-slate-800 mt-0.5 block truncate">
-                  {paciente.objetivo_texto || 'Melhora da saúde e acompanhamento nutricional'}
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                <span className="text-slate-400 block font-medium">Nível de Atividade</span>
+                <span className="text-sm font-bold text-slate-800 mt-0.5 block">
+                  {paciente.nivel_atividade || 'Não informado'}
+                </span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                <span className="text-slate-400 block font-medium">Data de Nascimento</span>
+                <span className="text-sm font-bold text-slate-800 mt-0.5 block">
+                  {paciente.data_nascimento
+                    ? paciente.data_nascimento.split('-').reverse().join('/')
+                    : 'Não informada'}
                 </span>
               </div>
             </div>
+
+            {/* Objetivos e Clínico */}
+            <div className="mt-4 pt-4 border-t border-slate-100 space-y-3 text-xs">
+              <div>
+                <span className="text-slate-400 block font-semibold mb-1">Objetivos</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {paciente.objetivos && paciente.objetivos.length > 0 ? (
+                    paciente.objetivos.map(obj => (
+                      <span
+                        key={obj}
+                        className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 font-semibold border border-emerald-200"
+                      >
+                        {obj}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-slate-600">
+                      {paciente.objetivo_texto || 'Melhora da saúde e acompanhamento nutricional'}
+                    </span>
+                  )}
+                </div>
+                {paciente.objetivos && paciente.objetivos.length > 0 && paciente.objetivo_texto && (
+                  <p className="text-slate-500 mt-1 italic">{paciente.objetivo_texto}</p>
+                )}
+              </div>
+
+              {/* Patologias, Restrições e Alergias */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <span className="text-slate-500 font-semibold block mb-1">Patologias / Condições</span>
+                  {paciente.patologias && paciente.patologias.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {paciente.patologias.map(p => (
+                        <span key={p} className="px-2 py-0.5 bg-white border border-slate-200 rounded-md text-[11px] font-medium text-slate-700">
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-slate-400 text-[11px]">Nenhuma registrada</span>
+                  )}
+                </div>
+
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <span className="text-slate-500 font-semibold block mb-1">Restrições Alimentares</span>
+                  {paciente.restricoes_alimentares && paciente.restricoes_alimentares.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {paciente.restricoes_alimentares.map(r => (
+                        <span key={r} className="px-2 py-0.5 bg-white border border-slate-200 rounded-md text-[11px] font-medium text-slate-700">
+                          {r}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-slate-400 text-[11px]">Nenhuma registrada</span>
+                  )}
+                </div>
+
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <span className="text-slate-500 font-semibold block mb-1">Alergias Alimentares</span>
+                  {paciente.alergias && paciente.alergias.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {paciente.alergias.map(a => (
+                        <span key={a} className="px-2 py-0.5 bg-white border border-slate-200 rounded-md text-[11px] font-medium text-slate-700">
+                          {a}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-slate-400 text-[11px]">Nenhuma registrada</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Hábitos e Rotina */}
+              {(paciente.refeicoes_por_dia || paciente.litros_agua || paciente.horario_acorda || paciente.horario_dorme || paciente.atividade_fisica !== null) && (
+                <div className="p-3.5 rounded-2xl bg-slate-50/70 border border-slate-100 mt-2">
+                  <span className="text-slate-600 font-bold block mb-2">Rotina e Hábitos Diários</span>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-slate-700">
+                    {paciente.refeicoes_por_dia && (
+                      <div>
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Refeições/dia</span>
+                        <span className="font-semibold">{paciente.refeicoes_por_dia} refeições</span>
+                      </div>
+                    )}
+                    {paciente.litros_agua && (
+                      <div>
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Água/dia</span>
+                        <span className="font-semibold">{paciente.litros_agua} litros</span>
+                      </div>
+                    )}
+                    {paciente.horario_acorda && (
+                      <div>
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Acorda</span>
+                        <span className="font-semibold">{paciente.horario_acorda}</span>
+                      </div>
+                    )}
+                    {paciente.horario_dorme && (
+                      <div>
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold">Dorme</span>
+                        <span className="font-semibold">{paciente.horario_dorme}</span>
+                      </div>
+                    )}
+                  </div>
+                  {paciente.atividade_fisica && paciente.atividade_fisica_descricao && (
+                    <div className="mt-2 pt-2 border-t border-slate-200/60 text-slate-600">
+                      <span className="font-semibold text-slate-700">Atividade física:</span> {paciente.atividade_fisica_descricao}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
+
 
           {/* Histórico de Consultas */}
           <Card className="border-slate-200/90 bg-white rounded-3xl overflow-hidden">
@@ -226,7 +351,7 @@ export const PacientePerfil: React.FC = () => {
                     Histórico de Consultas Registradas
                   </CardTitle>
                   <CardDescription className="text-xs text-slate-500 mt-0.5">
-                    Consultas salvas no Neon PostgreSQL
+                    Consultas e evoluções salvas
                   </CardDescription>
                 </div>
                 <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">

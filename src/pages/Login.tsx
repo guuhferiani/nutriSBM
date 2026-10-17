@@ -6,7 +6,7 @@ import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card'
 import { Alert } from '../components/ui/Alert'
-import { Mail, Lock, Eye, EyeOff, ShieldCheck } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 
 export const Login: React.FC = () => {
   const navigate = useNavigate()
@@ -147,12 +147,6 @@ export const Login: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-
-        {/* Rodapé sutil de segurança */}
-        <div className="mt-8 flex items-center justify-center gap-2 text-xs text-slate-400">
-          <ShieldCheck className="w-4 h-4 text-emerald-500" />
-          <span>Plataforma protegida com criptografia Neon Database</span>
-        </div>
       </div>
     </div>
   )

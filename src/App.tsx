@@ -5,6 +5,7 @@ import { Login } from './pages/Login'
 import { Register } from './pages/Register'
 import { Dashboard } from './pages/Dashboard'
 import { Pacientes } from './pages/Pacientes'
+import { PacienteNovo } from './pages/PacienteNovo'
 import { PacientePerfil } from './pages/PacientePerfil'
 
 const RootRedirect: React.FC = () => {
@@ -31,6 +32,7 @@ export function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/pacientes" element={<Pacientes />} />
+          <Route path="/pacientes/novo" element={<PacienteNovo />} />
           <Route path="/pacientes/:id" element={<PacientePerfil />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
